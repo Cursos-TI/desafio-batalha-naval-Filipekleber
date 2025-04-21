@@ -2,59 +2,63 @@
 
 int main(){
 
+    char letra[10] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
 
-// Matriz do tabuleiro
-int tabuleiro[10][10] = {
+    int tabuleiro[10][10] = {0};
 
-    {0,0,0,0,0,0,0,0,0,0}, 
-    {0,0,0,0,0,0,0,0,0,0},
-    {0,0,0,0,0,0,0,0,0,0},
-    {0,0,0,0,0,0,0,0,0,0},
-    {0,0,0,0,0,0,0,0,0,0},
-    {0,0,0,0,0,0,0,0,0,0},
-    {0,0,0,0,0,0,0,0,0,0},
-    {0,0,0,0,0,0,0,0,0,0},
-    {0,0,0,0,0,0,0,0,0,0},
-    {0,0,0,0,0,0,0,0,0,0}
-};
+    int navio1[3] = {3,3,3};
+    int navio2[3] = {3,3,3};
+    int navio3[3] = {3,3,3};
+    int navio4[3] = {3,3,3};
 
+    int linha_1d = 1;
+    int coluna_1d = 1;
+
+    int linha_2d = 6;
+    int coluna_2d = 7;
 
 
-/// Vetores representando os navios
-int navios01[3] = {3,3,3};
-int navios02[3] = {3,3,3};
+    int linha_h = 2;
+    int coluna_h = 4;
 
+    int linha_v = 5;
+    int coluna_v = 7;
 
-// Posição inicial do navio horizontal (Linha 2, coluna 4)
-int linha_h = 2;
-int coluna_h = 4;
+    for(int i = 0; i < 3; i++){
+        tabuleiro[linha_1d + i][coluna_1d + i] = navio3[i];
+    }
 
+    for(int i = 0; i < 3; i++){
+        tabuleiro[linha_2d + i][coluna_2d - i] = navio4[i];
+    }
 
-// Posição inicial do navio vertical (Linha 5, coluna 7)
-int linha_v = 5;
-int coluna_v = 7;
+    for(int i = 0; i < 3; i++){
+        tabuleiro[linha_h][coluna_h + i] = navio1[i];
+    }
 
+    for(int i = 0; i < 3; i++){
+        tabuleiro[linha_v + i][coluna_h] = navio2[i];
+    }
 
-// Posiciona navio horizontal
-for(int i = 0; i < 3;i++){
-    tabuleiro[linha_h][coluna_h + i] = navios01[i];
-}
+    printf("\n  TABULEIRO BATALHA NAVAL\n  ");
 
-
-// Posiciona navio vertical
-for(int i = 0; i < 3;i++){
-    tabuleiro[linha_v + i][coluna_v] = navios02[i];
-}
-
-
-
-// Exibir o tabuleiro
-for(int i = 0; i < 10; i++){
-    for(int j = 0; j < 10; j++){
-        printf("%d ", tabuleiro[i][j]);
+    for (int i = 0; i < 10; i++) {
+        printf("%c ", letra[i]);
     }
     printf("\n");
-}
+
+    // Mostrar o tabuleiro com os números laterais
+    for (int i = 0; i < 10; i++) {
+        printf("%d ", i + 1); // Mostra 1 a 10 na lateral
+        if (i + 1 < 10) printf(" "); // Ajustar espaço pros números de 1 dígito
+
+        for (int j = 0; j < 10; j++) {
+            printf("%d ", tabuleiro[i][j]);
+        }
+        printf("\n");
+    }
+
+
 
     return 0;
 }
